@@ -1,0 +1,39 @@
+﻿<Window x:Class="TileNavPane.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dxnav="http://schemas.devexpress.com/winfx/2008/xaml/navigation"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:local="clr-namespace:TileNavPane"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <dxnav:TileNavPane x:Name="tileNavPane1">
+            <dxnav:TileNavPane.NavButtons>
+                <dxnav:NavButton Content="DevExpress CRM" IsMain="True" Glyph="{dx:DXImageGrayscale Image=Home_32x32.png}" AllowGlyphTheming="True"/>
+                <dxnav:NavButton Content="Create..." HorizontalAlignment="Right" AllowGlyphTheming="True" Glyph="{dx:DXImageGrayscale Image=Add_32x32.png}">
+                    <dxnav:TileNavItem Content="Staff">
+                        <dxnav:TileNavSubItem Content="Manager"/>
+                        <dxnav:TileNavSubItem Content="Seller"/>
+
+                    </dxnav:TileNavItem>
+                    <dxnav:TileNavItem Content="Client"/>
+
+                </dxnav:NavButton>
+                <dxnav:NavButton Content="Settings" GlyphAlignment="Right" Glyph="{dx:DXImageGrayscale Image=Customization_32x32.png}" AllowGlyphTheming="True" HorizontalAlignment="Right"/>
+                <dxnav:NavButton HorizontalAlignment="Right" Glyph="{dx:DXImageGrayscale Image=Cancel_32x32.png}" AllowGlyphTheming="True" />
+            </dxnav:TileNavPane.NavButtons>
+            <dxnav:TileNavCategory Content="Sales">
+                <dxnav:TileNavItem Content="Dashboards" TileGlyph="{dx:DXImageGrayscale Image=Pie_32x32.png}" AllowGlyphTheming="True">
+                    <dxnav:TileNavSubItem Content="Sales pipeline" />
+                    <dxnav:TileNavSubItem Content="Estimated revenue"/>
+                </dxnav:TileNavItem>
+            </dxnav:TileNavCategory>
+        </dxnav:TileNavPane>
+    </Grid>
+</Window>
