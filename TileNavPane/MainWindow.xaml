@@ -14,27 +14,24 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <dxnav:TileNavPane x:Name="tileNavPane1">
+        <dxnav:TileNavPane x:Name="tileNavPane1" Background="green">
             <dxnav:TileNavPane.NavButtons>
-                <dxnav:NavButton Content="DevExpress CRM" IsMain="True" Glyph="{dx:DXImageGrayscale Image=Home_32x32.png}" AllowGlyphTheming="True"/>
-                <dxnav:NavButton Content="Create..." HorizontalAlignment="Right" AllowGlyphTheming="True" Glyph="{dx:DXImageGrayscale Image=Add_32x32.png}">
-                    <dxnav:TileNavItem Content="Staff">
-                        <dxnav:TileNavSubItem Content="Manager"/>
-                        <dxnav:TileNavSubItem Content="Seller"/>
-
-                    </dxnav:TileNavItem>
-                    <dxnav:TileNavItem Content="Client"/>
-
+                <dxnav:NavButton Content=" MENU" AllowGlyphTheming="True" Glyph="{dx:DXImage 'Office2013/Arrows/MoveDown_32x32.png'}"  >
+                    <dxnav:TileNavItem Content="Opcion1" />
+                    <dxnav:TileNavItem Content="Opcion2"/>
+                    <dxnav:TileNavItem Content="Opcion3"/>
+                    <dxnav:TileNavItem Content="Opcion4"/>
                 </dxnav:NavButton>
+
+                <dxnav:NavButton Content="Create..." HorizontalAlignment="Right" AllowGlyphTheming="True" Glyph="{dx:DXImageGrayscale Image=Add_32x32.png}">
+                    <dxnav:TileNavItem Content="Staff" />
+                    <dxnav:TileNavItem Content="Client"/>
+                </dxnav:NavButton>
+                    
                 <dxnav:NavButton Content="Settings" GlyphAlignment="Right" Glyph="{dx:DXImageGrayscale Image=Customization_32x32.png}" AllowGlyphTheming="True" HorizontalAlignment="Right"/>
                 <dxnav:NavButton HorizontalAlignment="Right" Glyph="{dx:DXImageGrayscale Image=Cancel_32x32.png}" AllowGlyphTheming="True" />
             </dxnav:TileNavPane.NavButtons>
-            <dxnav:TileNavCategory Content="Sales">
-                <dxnav:TileNavItem Content="Dashboards" TileGlyph="{dx:DXImageGrayscale Image=Pie_32x32.png}" AllowGlyphTheming="True">
-                    <dxnav:TileNavSubItem Content="Sales pipeline" />
-                    <dxnav:TileNavSubItem Content="Estimated revenue"/>
-                </dxnav:TileNavItem>
-            </dxnav:TileNavCategory>
+                         
         </dxnav:TileNavPane>
     </Grid>
 </Window>
