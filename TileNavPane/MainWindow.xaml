@@ -16,9 +16,9 @@
         </Grid.RowDefinitions>
         <dxnav:TileNavPane x:Name="tileNavPane1" Background="green">
             <dxnav:TileNavPane.NavButtons>
-                <dxnav:NavButton Content=" MENU" AllowGlyphTheming="True" Glyph="{dx:DXImage 'Office2013/Arrows/MoveDown_32x32.png'}"  >
-                    <dxnav:TileNavItem Content="Opcion1" />
-                    <dxnav:TileNavItem Content="Opcion2"/>
+                <dxnav:NavButton Content=" MENU" AllowGlyphTheming="True" Glyph="{dx:DXImage 'Office2013/Arrows/MoveDown_32x32.png'}" >
+                    <dxnav:TileNavItem Content="Opcion1" Background="green" AllowGlyphTheming="True" TileGlyph="{dx:DXImageGrayscale Image=Pie_32x32.png}" />
+                    <dxnav:TileNavItem Content="Opcion2" Background="red"  AllowGlyphTheming="True" TileGlyph="{dx:DXImage 'Images/Chart/DrillDownOnArguments_Pie_32x32.png'}" />
                     <dxnav:TileNavItem Content="Opcion3"/>
                     <dxnav:TileNavItem Content="Opcion4"/>
                 </dxnav:NavButton>
