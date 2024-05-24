@@ -1,18 +1,23 @@
 ﻿<Window x:Class="TileNavPane.MainWindow"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:dxnav="http://schemas.devexpress.com/winfx/2008/xaml/navigation"
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-        xmlns:local="clr-namespace:TileNavPane"
+        xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:dxwuin="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/navigation"
+        xmlns:local="clr-namespace:TileNavPane" 
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="350" Width="525"  WindowState="Maximized" >
     
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <dxnav:TileNavPane x:Name="tileNavPane1" Background="green">
             <dxnav:TileNavPane.NavButtons>
@@ -33,5 +38,21 @@
             </dxnav:TileNavPane.NavButtons>
                          
         </dxnav:TileNavPane>
+
+        <dxwui:NavigationFrame Grid.Row="1" x:Name="frame" BackNavigationMode="Root" AnimationType="SlideHorizontal">
+            <dxwui:NavigationFrame.Background>
+                <ImageBrush ImageSource="Images/fondo.jpg"/>
+            </dxwui:NavigationFrame.Background>
+        </dxwui:NavigationFrame>
+
+        <dxb:StatusBarControl Grid.Row="2">
+            <dxb:BarStaticItem Content="USUARIO LOGUEADO"/>
+            <dxb:BarSubItem Glyph="{dx:DXImage Image=Properties_16x16.png}"  Alignment="Far">
+                <dxmvvm:Interaction.Behaviors>
+                    <dxb:BarSubItemThemeSelectorBehavior />
+                </dxmvvm:Interaction.Behaviors>
+            </dxb:BarSubItem>
+        </dxb:StatusBarControl>
+
     </Grid>
 </Window>
