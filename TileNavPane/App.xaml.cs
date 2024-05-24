@@ -13,5 +13,13 @@ namespace TileNavPane
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            MainWindow view = new MainWindow();
+            MainWindowVM context = new MainWindowVM();
+            view.DataContext = context;
+            view.Show();
+        }
     }
 }

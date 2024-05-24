@@ -264,3 +264,6 @@ D:\Users\jomalibran\source\repos\TileNavPane\TileNavPane\bin\Debug\DevExpress.Xp
 D:\Users\jomalibran\source\repos\TileNavPane\TileNavPane\bin\Debug\DevExpress.Xpf.Themes.VS2010.v22.1.dll
 D:\Users\jomalibran\source\repos\TileNavPane\TileNavPane\bin\Debug\DevExpress.Xpf.TreeMap.v22.1.dll
 D:\Users\jomalibran\source\repos\TileNavPane\TileNavPane\bin\Debug\DevExpress.Xpo.v22.1.dll
+D:\Users\jomalibran\source\repos\TileNavPane\TileNavPane\obj\Debug\View\Orden.g.cs
+D:\Users\jomalibran\source\repos\TileNavPane\TileNavPane\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Users\jomalibran\source\repos\TileNavPane\TileNavPane\obj\Debug\View\Orden.baml
