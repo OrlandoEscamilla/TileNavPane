@@ -67,7 +67,7 @@
 
         <dxwui:NavigationFrame Grid.Row="1" x:Name="frame" BackNavigationMode="Root" AnimationType="SlideHorizontal">
             <dxwui:NavigationFrame.Background>
-                <ImageBrush ImageSource="Images/fondo.jpg"/>
+                <ImageBrush ImageSource="Images/fondo.png"/>
             </dxwui:NavigationFrame.Background>
         </dxwui:NavigationFrame>
 
