@@ -43,9 +43,7 @@ namespace TileNavPane
             get
             {
                 return _inicio ?? (_inicio = new DevExpress.Mvvm.DelegateCommand(() => {
-
                     CurrentView = new UserControlImagenPrincipal();
-
                 }));
             }
         }
@@ -60,9 +58,26 @@ namespace TileNavPane
                 return _abrir ?? (_abrir = new DevExpress.Mvvm.DelegateCommand(() => {
                     OrdenVM objOrden = new OrdenVM();
 
-                    OrdenDlg.ShowDialog(null, "Actualizar Registro", objOrden);
+                      UICommand aceptarCommand = new UICommand()
+                       {
+                           Caption = "Aceptar",
+                           IsCancel = false,
+                           IsDefault = true,
+                           Command = new DevExpress.Mvvm.DelegateCommand(() =>
+                           {
 
-                  
+                           })
+                       };
+
+                       UICommand cancelCommand = new UICommand()
+                       {
+                           Caption = "Cancelar",
+                           IsCancel = true,
+                           IsDefault = false
+                       };
+
+                    OrdenDlg.ShowDialog(new List<UICommand>() {aceptarCommand, cancelCommand }, "Actualizar Registro", objOrden);
+              
                 }));
             }
         }
