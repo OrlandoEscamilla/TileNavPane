@@ -239,10 +239,19 @@
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\Singleton.cs" />
+    <Compile Include="Model\Ordenes.cs" />
+    <Compile Include="Model\Pedidos.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\OrdenVM.cs" />
+    <Compile Include="ViewModel\tablePedidosVM.cs" />
     <Compile Include="View\Orden.xaml.cs">
       <DependentUpon>Orden.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\tablePedidos.xaml.cs">
+      <DependentUpon>tablePedidos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControlImagenPrincipal.xaml.cs">
+      <DependentUpon>UserControlImagenPrincipal.xaml</DependentUpon>
     </Compile>
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
@@ -261,6 +270,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Orden.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\tablePedidos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControlImagenPrincipal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -309,9 +326,7 @@
   <ItemGroup>
     <Resource Include="Images\fondo.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\fondo.png" />
   </ItemGroup>

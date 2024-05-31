@@ -272,3 +272,7 @@ D:\Users\jomalibran\source\repos\TileNavPane\TileNavPane\obj\Debug\TileNavPane.c
 D:\Users\jomalibran\source\repos\TileNavPane\TileNavPane\obj\Debug\TileNavPane.csproj.CopyComplete
 D:\Users\jomalibran\source\repos\TileNavPane\TileNavPane\obj\Debug\TileNavPane.exe
 D:\Users\jomalibran\source\repos\TileNavPane\TileNavPane\obj\Debug\TileNavPane.pdb
+D:\Users\jomalibran\source\repos\TileNavPane\TileNavPane\obj\Debug\View\tablePedidos.g.cs
+D:\Users\jomalibran\source\repos\TileNavPane\TileNavPane\obj\Debug\View\UserControlImagenPrincipal.g.cs
+D:\Users\jomalibran\source\repos\TileNavPane\TileNavPane\obj\Debug\View\tablePedidos.baml
+D:\Users\jomalibran\source\repos\TileNavPane\TileNavPane\obj\Debug\View\UserControlImagenPrincipal.baml
