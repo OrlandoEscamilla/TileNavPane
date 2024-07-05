@@ -9,6 +9,9 @@ namespace TileNavPane.Model
     public class Pedidos
     {
 
+        public Pedidos() { }
+      
+
         public int ID_PEDIDO { get; set; }
 
         public DateTime FECHA_HORA { get; set; }

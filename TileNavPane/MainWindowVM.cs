@@ -58,29 +58,30 @@ namespace TileNavPane
                 return _abrir ?? (_abrir = new DevExpress.Mvvm.DelegateCommand(() => {
                     OrdenVM objOrden = new OrdenVM();
 
-                      UICommand aceptarCommand = new UICommand()
-                       {
-                           Caption = "Aceptar",
-                           IsCancel = false,
-                           IsDefault = true,
-                           Command = new DevExpress.Mvvm.DelegateCommand(() =>
-                           {
+                      //UICommand aceptarCommand = new UICommand()
+                      // {
+                      //     Caption = "Aceptar",
+                      //     IsCancel = false,
+                      //     IsDefault = true,
+                      //     Command = new DevExpress.Mvvm.DelegateCommand(() =>
+                      //     {
 
-                           })
-                       };
+                      //     })
+                      // };
 
-                       UICommand cancelCommand = new UICommand()
-                       {
-                           Caption = "Cancelar",
-                           IsCancel = true,
-                           IsDefault = false
-                       };
+                      // UICommand cancelCommand = new UICommand()
+                      // {
+                      //     Caption = "Cancelar",
+                      //     IsCancel = true,
+                      //     IsDefault = false
+                      // };
 
-                    OrdenDlg.ShowDialog(new List<UICommand>() {aceptarCommand, cancelCommand }, "Actualizar Registro", objOrden);
+                    OrdenDlg.ShowDialog(/*new List<UICommand>() {aceptarCommand, cancelCommand }*/null, "Actualizar Registro", objOrden);
               
                 }));
             }
         }
+
 
 
         public ICommand Pedidos

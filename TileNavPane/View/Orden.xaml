@@ -8,48 +8,118 @@
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
              
-             xmlns:local="clr-namespace:TileNavPane.View"
+             xmlns:local="clr-namespace:TileNavPane.View" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="500" Width="500" Height="500">
+             d:DesignHeight="600" d:DesignWidth="600" Width="600" Height="600">
+
+    <dxmvvm:Interaction.Behaviors>
+        <dx:CurrentDialogService x:Name="OrdenCurrentDlg"/>
+        <dx:DXMessageBoxService x:Name="AlertaDlg"/>
+    </dxmvvm:Interaction.Behaviors>
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="100"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
 
         </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+
+  
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" >
+            <Label Content="PRODUCTO:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Margin="10,0,10,0"  FontWeight="DemiBold"/>
+            <dxe:ComboBoxEdit x:Name="Producto" HorizontalAlignment="Left" ItemsSource="{Binding DatasourceProductos}" EditValue="{Binding NOMBRE_PRODUCTO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="200" DisplayMember="NOMBRE_PRODUCTO" ValueMember="NOMBRE_PRODUCTO" >
+            </dxe:ComboBoxEdit>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" >
+            <Label Content="CANTIDAD:" HorizontalAlignment="Left"  VerticalAlignment="Top" Height="23"  FontWeight="DemiBold" Margin="10,0,10,0"/>
+            <dxe:TextEdit  x:Name="text_CANTIDAD"  Height="27" HorizontalAlignment="Left"  VerticalAlignment="Top" EditValue="{Binding CANTIDAD}" MaskType="Numeric" Mask="n0" Width="100"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"   Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2">
+            <RadioButton Content="Con todo" x:Name="contodo" Command="{Binding commandRadio}" CommandParameter="{Binding Content, ElementName=contodo}" IsChecked="{Binding CONTODO}" Margin="10,0,17,0" />
+            <RadioButton Content="Con todo menos" x:Name="contodomenos" Command="{Binding commandRadio}" CommandParameter="{Binding Content, ElementName=contodomenos}" IsChecked="{Binding CONTODOMENOS}"/>
+            <dxe:ComboBoxEdit ItemsSource="{Binding listIngredientes}" Width="350" Grid.ColumnSpan="1"  Height="25" Margin="10,0,0,0" IsEnabled="{Binding habilitar}" EditValue="{Binding INGREDIENTES, Mode=TwoWay}">
+                <dxe:ComboBoxEdit.StyleSettings>
+                    <dxe:TokenComboBoxStyleSettings />
+                </dxe:ComboBoxEdit.StyleSettings>
+            </dxe:ComboBoxEdit>
+
+        </StackPanel>
+
+       
+
+        <StackPanel    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" >
+            <Label Content="COMENTARIOS:" HorizontalAlignment="Left" Height="23" Width="140" FontWeight="DemiBold"/>
+            <dxe:TextEdit  x:Name="Comentarios" Height="60" EditValue="{Binding COMENTARIOS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+
+        <StackPanel  Grid.Row="3" Grid.Column="1">
+            <dx:SimpleButton Content="Agregar orden" Command="{Binding AddOrdenCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Width="140" Height="27" FontWeight="DemiBold"  Cursor="Hand"></dx:SimpleButton>
+        </StackPanel>
+
+        <StackPanel  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+            <dxg:GridControl x:Name="GridOrdendes" ItemsSource="{Binding SourceOrdenes}" MinHeight="100" MaxHeight="5000" MaxWidth="5000" SelectedItem="{Binding SelectedCorreo,UpdateSourceTrigger=PropertyChanged}" SelectionMode="Row" >
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn x:Name="NOMBRE_PRODUCTO" FieldName="NOMBRE_PRODUCTO" Header="PRODUCTO" Width="300"/>
+                        <dxg:GridColumn x:Name="CANTIDAD" FieldName="CANTIDAD" />
+                        <dxg:GridColumn x:Name="CON_TODO" FieldName="CON_TODO" Header="CON TODO" Width="300"/>
+                        <dxg:GridColumn x:Name="CON_TODO_MENOS" FieldName="CON_TODO_MENOS" Header="CON TODO MENOS" />
+                        <dxg:GridColumn x:Name="COMENTARIOS" FieldName="COMENTARIOS" Header="COMENTARIOS" />
+                        <dxg:GridColumn x:Name="TOTAL_ORDEN" FieldName="TOTAL_ORDEN" Header="TOTAL ORDEN" />
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView ShowTotalSummary="false"  ShowGroupPanel="False"   AllowMasterDetail="False" AllowEditing="False">
+                        <dxg:TableView.RowCellMenuCustomizations>
+                            <dxb:BarButtonItem Content="Eliminar Orden"  Command="{Binding ElementName=dgCorreos , Path=DataContext.EliminarCorreoCommand}"  />
+                        </dxg:TableView.RowCellMenuCustomizations>
+                    </dxg:TableView>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0" >
+            <Label Content="NOMBRE CLIENTE:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Margin="10,0,10,0"  FontWeight="DemiBold"/>
+            <dxe:TextEdit  x:Name="NombreCliente"  Height="27" HorizontalAlignment="Left"  VerticalAlignment="Top" EditValue="{Binding NOMBRE_CLIENTE}" Width="170"/>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
+            <Label Content="TELEFONO CLIENTE:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Margin="10,0,10,0"  FontWeight="DemiBold"/>
+            <dxe:TextEdit  x:Name="TelefonoCliente"  Height="27" HorizontalAlignment="Left"  VerticalAlignment="Top" EditValue="{Binding TELEFONO_CLIENTE}" MaskType="Numeric" Mask="n0"  Width="160"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" >
+            <Label Content="COMENTARIO PEDIDO:" HorizontalAlignment="Left" Height="23" Width="140" FontWeight="DemiBold"/>
+            <dxe:TextEdit  x:Name="ComentariosPedido" Height="60" EditValue="{Binding COMENTARIO_PEDIDO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="0" >
+            <dxe:CheckEdit x:Name="checkDisable"  EditValue="{Binding PARA_LLEVAR}" Content="PARA LLEVAR?" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="DemiBold"></dxe:CheckEdit>
+        </StackPanel>
 
 
-        <!--<Button x:Name="btnClose"                      
-                    BorderThickness="0"
-                    Content="X"
-                    Foreground="White"
-                    FontSize="12"
-                    FontFamily="Monserrat"
-                    Cursor="Hand"                           
-                    Grid.Column="2"
-                    />-->
+        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2">
+            <Label Content="{Binding TOTAL_PEDIDO}" HorizontalAlignment="Left" Height="23" Width="140" FontWeight="DemiBold"/>
+        </StackPanel>
 
-
-        <Grid>
-            <Label Content="PRODUCTO:" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="23" Width="140" FontWeight="DemiBold"/>
-            <dxe:TextEdit  x:Name="Producto" Margin="0,38,0,144" Height="27"/>
-            <Label Content="CANTIDAD:" HorizontalAlignment="Left" Margin="0,86,0,0" VerticalAlignment="Top" Height="23" Width="140" FontWeight="DemiBold"/>
-            <dxe:TextEdit  x:Name="Producto_" Margin="0,109,374,73" Height="27" />
-
-            <StackPanel  Margin="0,155,0,-135" >
-                <RadioButton Content="Con todo"/>
-                <RadioButton Content="Con todo menos..."/>
-                <dxe:ComboBoxEdit ItemsSource="{Binding listIngredientes}" Height="42" Margin="0,10,0,0">
-                    <dxe:ComboBoxEdit.StyleSettings>
-                        <dxe:TokenComboBoxStyleSettings />
-                    </dxe:ComboBoxEdit.StyleSettings>
-                </dxe:ComboBoxEdit>
-                <Label Content="COMENTARIOS:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="140" FontWeight="DemiBold" Margin="0,20,0,0"/>
-                <dxe:TextEdit  x:Name="Comentarios" Height="50"/>
-            </StackPanel>
-        </Grid>
-
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2">
+            <dx:SimpleButton Content="Actualizar" Command="{Binding ActualizarCmd}"  Width="140" Height="27" FontWeight="DemiBold"  Cursor="Hand" RenderTransformOrigin="0.521,0.63"></dx:SimpleButton>
+            <dx:SimpleButton Content="Cancelar" Command="{Binding CancelarCmd}"   Width="140" Height="27" FontWeight="DemiBold"  Cursor="Hand"/>
+        </StackPanel>
 
     </Grid>
 </UserControl>
