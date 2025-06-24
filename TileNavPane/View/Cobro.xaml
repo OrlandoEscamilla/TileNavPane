@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="TileNavPane.View.Cobro"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" 
+             xmlns:view="clr-namespace:TileNavPane.View"
+             xmlns:local="clr-namespace:TileNavPane.View" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <dxmvvm:Interaction.Behaviors>
+        <dx:DXMessageBoxService x:Name="AlertaDlg"/>
+
+        <dx:DialogService x:Name="VentanaCobroDlg" DialogWindowStartupLocation="CenterOwner">
+            <dx:DialogService.ViewTemplate>
+                <DataTemplate>
+                    <view:VentanaCobro/>
+                </DataTemplate>
+            </dx:DialogService.ViewTemplate>
+            <dx:DialogService.DialogStyle>
+                <Style TargetType="{x:Type dx:DXDialogWindow}">
+                    <Setter Property="SizeToContent" Value="WidthAndHeight"/>
+                    <!--<Setter Property="WindowStyle" Value="None"/>-->
+                </Style>
+            </dx:DialogService.DialogStyle>
+        </dx:DialogService>
+    </dxmvvm:Interaction.Behaviors>
+
+
+
+   
+    
+    
+    <dxb:BarManager >
+
+        
+
+        <dxb:BarManager.Items>
+            <dxb:BarButtonItem x:Name="BarItemGuardar" Command="{Binding RefrescarPedidosCommand}" BarItemDisplayMode="ContentAndGlyph" >
+                <dxb:BarButtonItem.Style>
+                    <Style TargetType="{x:Type dxb:BarButtonItem}">
+                        <Setter Property="Content" Value="Recargar Pedidos"/>
+                        <Setter Property="LargeGlyph" Value="{Binding Source={dx:DXImage Image=Recurrence_32x32.png}}"/>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Id_Servicio}" Value="33"/>
+                                    <Condition Binding="{Binding Id_Solicitud}" Value="0"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Content" Value="Generar Solicitudes"/>
+                                <Setter Property="LargeGlyph" Value="{Binding Source={dx:DXImage Image=SavePageSetup_32x32.png}}"/>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </dxb:BarButtonItem.Style>
+            </dxb:BarButtonItem>
+
+            <dxb:BarButtonItem x:Name="BotonCobrarPedido" ToolTip="Cobrar Pedido" Command="{Binding CobrarPedidoCommand}" CommandParameter="{Binding ElementName=gcPedidos, Path=SelectedItem}" Content="Cobrar Pedido" BarItemDisplayMode="ContentAndGlyph" LargeGlyph="{dx:DXImage Image='Accounting_32x32.png'}" Glyph="{dx:DXImage Image=Accounting_32x32.png}" />
+
+            <dxb:BarButtonItem x:Name="BarItemCerrar" ToolTip="Eliminar Pedido" Command="{Binding CancelarPedidoCommand}" CommandParameter="{Binding ElementName=gcPedidos, Path=SelectedItem}" Content="Eliminar Pedido" BarItemDisplayMode="ContentAndGlyph" LargeGlyph="{dx:DXImage Image=Delete_32x32.png}" Glyph="{dx:DXImage Image=Delete_32x32.png}" />
+
+            <dxb:BarButtonItem x:Name="BarItemDescargar" ToolTip="Descargar Pedidos" Command="{Binding DescargarPedidosCommand}" CommandParameter="{Binding ElementName=gcPedidos, Path=SelectedItem}" Content="Descargar Pedidos" BarItemDisplayMode="ContentAndGlyph" LargeGlyph="{dx:DXImage Image=ExportModelDifferences_32x32.png}" Glyph="{dx:DXImage Image=ExportModelDifferences_32x32.png}" />
+
+        </dxb:BarManager.Items>
+
+        <dxb:BarManager.Bars>
+            <dxb:Bar Caption="bar1" AllowCustomizationMenu="False" AllowQuickCustomization="False" AllowHide="False" UseWholeRow="True" >
+                <dxb:Bar.DockInfo>
+                    <dxb:BarDockInfo ContainerType="Top" />
+                </dxb:Bar.DockInfo>
+                <dxb:BarItemLink BarItemName="BarItemGuardar" />
+                <dxb:BarItemLink BarItemName="BotonCobrarPedido" />
+
+                <dxb:BarItemLink BarItemName="BarItemCerrar" />
+                <dxb:BarItemLink BarItemName="BarItemDescargar" />
+
+            </dxb:Bar>
+        </dxb:BarManager.Bars>
+
+ 
+
+
+
+        <Grid>
+            
+            <dxg:GridControl ItemsSource="{Binding DataSource}" x:Name="gcPedidos" Height="540" Width="auto" Margin="10,0"  AutoExpandAllGroups="True" >
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn FieldName="ID_PEDIDO" Header="ID_PEDIDO" ReadOnly="True" />
+                    <dxg:GridColumn FieldName="USUARIO_CAPTURA" Header="CAPTURADO POR" ReadOnly="True" />
+                    <dxg:GridColumn FieldName="FECHA_HORA" Header="FECHA_HORA" ReadOnly="True" >
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <dxe:TextEdit Name="PART_Editor" DisplayFormatString="dd/MM/yyyy HH:mm:ss" />
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="ESTATUS" Header="ESTATUS" ReadOnly="True" GroupIndex="1"/>
+                    <dxg:GridColumn FieldName="PARA_LLEVAR" Header="PARA LLEVAR" ReadOnly="True" />
+                    <dxg:GridColumn FieldName="NOMBRE_CLIENTE" Header="NOMBRE_CLIENTE" ReadOnly="True" />
+                    <dxg:GridColumn FieldName="TELEFONO_CLIENTE" Header="TELEFONO_CLIENTE" ReadOnly="True" />
+                    <dxg:GridColumn FieldName="COMENTARIOS" Header="COMENTARIOS" ReadOnly="True" />
+                    <dxg:GridColumn FieldName="TOTAL" Header="TOTAL" ReadOnly="True" />
+                </dxg:GridControl.Columns>
+
+                <dxg:GridControl.DetailDescriptor>
+                    <dxg:DataControlDetailDescriptor ItemsSourceBinding="{Binding Ordenes}">
+                        <dxg:GridControl AutoGenerateColumns="None">
+                            <dxg:GridControl.Columns>
+                                <dxg:GridColumn FieldName="ID_PEDIDO" Header="ID_PEDIDO" ReadOnly="True"/>
+                                <dxg:GridColumn FieldName="ID_ORDEN" Header="ID_ORDEN" ReadOnly="True"/>
+                                <dxg:GridColumn FieldName="ID_PRODUCTO" Header="ID_PRODUCTO" ReadOnly="True"/>
+                                <dxg:GridColumn FieldName="NOMBRE_PRODUCTO" Header="NOMBRE_PRODUCTO" ReadOnly="True"/>
+                                <dxg:GridColumn FieldName="CANTIDAD" Header="CANTIDAD" ReadOnly="True"/>
+                                <dxg:GridColumn FieldName="CON_TODO" Header="CONTODO" ReadOnly="True"/>
+                                <dxg:GridColumn FieldName="CON_TODO_MENOS" Header="CON TODO MENOS" ReadOnly="True"/>
+                                <dxg:GridColumn FieldName="COMENTARIOS" Header="COMENTARIOS" ReadOnly="True"/>
+                                <dxg:GridColumn FieldName="TOTAL_ORDEN" Header="TOTAL" ReadOnly="True"/>
+                            </dxg:GridControl.Columns>
+                        </dxg:GridControl>
+                    </dxg:DataControlDetailDescriptor>
+                </dxg:GridControl.DetailDescriptor>
+            </dxg:GridControl>
+        </Grid>
+    </dxb:BarManager >
+</UserControl>

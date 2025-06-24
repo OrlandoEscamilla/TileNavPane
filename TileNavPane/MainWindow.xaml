@@ -48,16 +48,16 @@
         <dxnav:TileNavPane x:Name="tileNavPane1" Background="green">
             <dxnav:TileNavPane.NavButtons>
                 <dxnav:NavButton Content=" MENU" AllowGlyphTheming="True" Glyph="{dx:DXImage 'Office2013/Arrows/MoveDown_32x32.png'}" >
-                    <dxnav:TileNavItem Content="Opcion1" Background="green" AllowGlyphTheming="True" TileGlyph="{dx:DXImageGrayscale Image=Pie_32x32.png}" Command="{Binding Inicio}" />
-                    <dxnav:TileNavItem Content="Opcion2" Background="red" AllowGlyphTheming="True" TileGlyph="{dx:DXImage 'Images/Chart/DrillDownOnArguments_Pie_32x32.png'}" Command="{Binding Abrir}" />
-                    <dxnav:TileNavItem Content="Opcion3" Background="CadetBlue" AllowGlyphTheming="True" TileGlyph="{dx:DXImage 'Images/Chart/DrillDownOnArguments_Pie_32x32.png'}" Command="{Binding Pedidos}"/>
-                    <dxnav:TileNavItem Content="Opcion4" Background="GRAY" AllowGlyphTheming="True" TileGlyph="{dx:DXImage 'Images/Chart/DrillDownOnArguments_Pie_32x32.png'}" />
+                    <dxnav:TileNavItem Content="Inicio" Background="green" AllowGlyphTheming="False" TileGlyph="{dx:DXImage 'Images/Navigation/Home_32x32.png'}" Command="{Binding Inicio}" />
+                    <dxnav:TileNavItem Content="Tomar Pedido" Background="red" AllowGlyphTheming="False" TileGlyph="{dx:DXImage 'Images/Business Objects/BOReport_32x32.png'}" Command="{Binding Abrir}" />
+                    <dxnav:TileNavItem Content="Pedidos" Background="CadetBlue" AllowGlyphTheming="False" TileGlyph="{dx:DXImage 'Images/Data/EditDataSource_32x32.png'}" Command="{Binding Pedidos}"/>
+                    <dxnav:TileNavItem Content="Cobro" Background="GRAY" AllowGlyphTheming="False" TileGlyph="{dx:DXImage 'Images/Number Formats/Accounting_32x32.png'}"  Command="{Binding Cobro}" />
                 </dxnav:NavButton>
 
-                <dxnav:NavButton Content="Create..." HorizontalAlignment="Right" AllowGlyphTheming="True" Glyph="{dx:DXImageGrayscale Image=Add_32x32.png}" Command="{Binding Abrir}"/>
+                <dxnav:NavButton Content="Tomar Pedido..." HorizontalAlignment="Right" AllowGlyphTheming="True" Glyph="{dx:DXImageGrayscale Image='BOReport_32x32.png'}" Command="{Binding Abrir}"/>
 
 
-                <dxnav:NavButton Content="Settings" GlyphAlignment="Right" Glyph="{dx:DXImageGrayscale Image=Customization_32x32.png}" AllowGlyphTheming="True" HorizontalAlignment="Right"/>
+                <dxnav:NavButton Content="Configuración" GlyphAlignment="Right" Glyph="{dx:DXImageGrayscale Image=Customization_32x32.png}" AllowGlyphTheming="True" HorizontalAlignment="Right"/>
                 <dxnav:NavButton HorizontalAlignment="Right" Glyph="{dx:DXImageGrayscale Image=Cancel_32x32.png}" AllowGlyphTheming="True" />
             </dxnav:TileNavPane.NavButtons>
                          

@@ -74,16 +74,16 @@
             <dxg:GridControl x:Name="GridOrdendes" ItemsSource="{Binding SourceOrdenes}" MinHeight="100" MaxHeight="5000" MaxWidth="5000" SelectedItem="{Binding SelectedCorreo,UpdateSourceTrigger=PropertyChanged}" SelectionMode="Row" >
                     <dxg:GridControl.Columns>
                         <dxg:GridColumn x:Name="NOMBRE_PRODUCTO" FieldName="NOMBRE_PRODUCTO" Header="PRODUCTO" Width="300"/>
-                        <dxg:GridColumn x:Name="CANTIDAD" FieldName="CANTIDAD" />
+                        <dxg:GridColumn x:Name="CANTIDAD" FieldName="CANTIDAD"  />
                         <dxg:GridColumn x:Name="CON_TODO" FieldName="CON_TODO" Header="CON TODO" Width="300"/>
                         <dxg:GridColumn x:Name="CON_TODO_MENOS" FieldName="CON_TODO_MENOS" Header="CON TODO MENOS" />
                         <dxg:GridColumn x:Name="COMENTARIOS" FieldName="COMENTARIOS" Header="COMENTARIOS" />
                         <dxg:GridColumn x:Name="TOTAL_ORDEN" FieldName="TOTAL_ORDEN" Header="TOTAL ORDEN" />
                 </dxg:GridControl.Columns>
                 <dxg:GridControl.View>
-                    <dxg:TableView ShowTotalSummary="false"  ShowGroupPanel="False"   AllowMasterDetail="False" AllowEditing="False">
+                    <dxg:TableView ShowTotalSummary="true"  ShowGroupPanel="False"   AllowMasterDetail="False" AllowEditing="False">
                         <dxg:TableView.RowCellMenuCustomizations>
-                            <dxb:BarButtonItem Content="Eliminar Orden"  Command="{Binding ElementName=dgCorreos , Path=DataContext.EliminarCorreoCommand}"  />
+                            <dxb:BarButtonItem Content="Eliminar Orden"  Command="{Binding ElementName=GridOrdendes , Path=DataContext.BorrarOrdenCommand}" CommandParameter="{Binding ElementName=GridOrdendes, Path=SelectedItem}"  />
                         </dxg:TableView.RowCellMenuCustomizations>
                     </dxg:TableView>
                 </dxg:GridControl.View>
@@ -117,7 +117,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2">
-            <dx:SimpleButton Content="Actualizar" Command="{Binding ActualizarCmd}"  Width="140" Height="27" FontWeight="DemiBold"  Cursor="Hand" RenderTransformOrigin="0.521,0.63"></dx:SimpleButton>
+            <dx:SimpleButton Content="Guardar" Command="{Binding ActualizarCmd}"  Width="140" Height="27" FontWeight="DemiBold"  Cursor="Hand" RenderTransformOrigin="0.521,0.63"></dx:SimpleButton>
             <dx:SimpleButton Content="Cancelar" Command="{Binding CancelarCmd}"   Width="140" Height="27" FontWeight="DemiBold"  Cursor="Hand"/>
         </StackPanel>
 

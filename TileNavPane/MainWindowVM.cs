@@ -19,6 +19,7 @@ namespace TileNavPane
         ICommand _inicio;
         ICommand _abrir;
         ICommand _pedidos;
+        ICommand _cobro;
 
         protected IDialogService OrdenDlg { get { return this.GetService<IDialogService>("OrdenDlg"); } }
 
@@ -76,8 +77,14 @@ namespace TileNavPane
                       //     IsDefault = false
                       // };
 
-                    OrdenDlg.ShowDialog(/*new List<UICommand>() {aceptarCommand, cancelCommand }*/null, "Actualizar Registro", objOrden);
-              
+                    OrdenDlg.ShowDialog(/*new List<UICommand>() {aceptarCommand, cancelCommand }*/null, "Crear Pedido", objOrden);
+
+                    tablePedidos view = new tablePedidos();
+                    tablePedidosVM context = new tablePedidosVM();
+
+                    view.DataContext = context;
+                    CurrentView = view;
+
                 }));
             }
         }
@@ -95,6 +102,21 @@ namespace TileNavPane
                    
                     view.DataContext = context;
                     CurrentView = view;                   
+                }));
+            }
+        }
+
+        public ICommand Cobro
+        {
+            get
+            {
+                return _cobro ?? (_cobro = new DevExpress.Mvvm.DelegateCommand(() =>
+                {
+                    Cobro view = new Cobro();
+                    CobroVM context = new CobroVM();
+
+                    view.DataContext = context;
+                    CurrentView = view;
                 }));
             }
         }

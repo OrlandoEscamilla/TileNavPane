@@ -1,4 +1,5 @@
 ﻿using DevExpress.ClipboardSource.SpreadsheetML;
+using DevExpress.DocumentServices.ServiceModel.DataContracts;
 using DevExpress.Mvvm;
 using DevExpress.XtraRichEdit.Import.Html;
 using DevExpress.XtraSpreadsheet.Model;
@@ -20,6 +21,7 @@ namespace TileNavPane.ViewModel
         private ICommand _actualizarCmd;
         private ICommand _cancelarCmd;
         private ICommand _addOrdenCommand;
+        private ICommand _borrarOrdenCommand;
 
     
 
@@ -78,6 +80,12 @@ namespace TileNavPane.ViewModel
         {
             get { return GetProperty(() => ID_PEDIDO); }
             set { SetProperty(() => ID_PEDIDO, value); }
+        }
+
+        public string ESTATUS
+        {
+            get { return GetProperty(() => ESTATUS); }
+            set { SetProperty(() => ESTATUS, value); }
         }
 
         public int CANTIDAD
@@ -204,7 +212,19 @@ namespace TileNavPane.ViewModel
             }
         }
 
-      
+
+        public ICommand BorrarOrdenCommand
+        {
+            get
+            {
+                return _borrarOrdenCommand ?? (_borrarOrdenCommand = new DelegateCommand<Ordenes>((row) =>
+                {
+                    SourceOrdenes.Remove(row);
+                    TOTAL_PEDIDO = SourceOrdenes.Sum(o => o.TOTAL_ORDEN);
+                }));
+            }
+        }
+
 
 
 
@@ -219,12 +239,30 @@ namespace TileNavPane.ViewModel
                     {
                         try
                         {
-                            var idPedido = ta.GuardarPedido(PARA_LLEVAR, NOMBRE_CLIENTE, TELEFONO_CLIENTE, COMENTARIO_PEDIDO, TOTAL_PEDIDO);
-                            foreach (var item in SourceOrdenes)
+                            if (ID_PEDIDO != 0)
                             {
-                                ta.GuardarOrdenes(Convert.ToInt32(idPedido), item.NOMBRE_PRODUCTO, item.CANTIDAD, item.CON_TODO, item.CON_TODO_MENOS, item.COMENTARIOS);
+
+                                ta.ActualizarPedido(ID_PEDIDO, ESTATUS, PARA_LLEVAR, NOMBRE_CLIENTE, TELEFONO_CLIENTE, COMENTARIO_PEDIDO, TOTAL_PEDIDO, Singleton.Instance.Session.ID_USUARIO);
+                                foreach (var item in SourceOrdenes)
+                                {
+
+                                    ta.ActualizarOrdenes(Convert.ToInt32(ID_PEDIDO), item.NOMBRE_PRODUCTO, item.CANTIDAD, item.CON_TODO, item.CON_TODO_MENOS, item.COMENTARIOS);
+                                }
+                                Alertas.ShowMessage("Pedido Actualizado con exito", "AVISO", MessageButton.OK, MessageIcon.Information);
+                                OrdenCurrentDlg.Close();
                             }
-                            Alertas.ShowMessage("Pedido realizado con exito", "AVISO", MessageButton.OK, MessageIcon.Information);
+                            else
+                            {
+
+                                var idPedido = ta.GuardarPedido(PARA_LLEVAR, NOMBRE_CLIENTE, TELEFONO_CLIENTE, COMENTARIO_PEDIDO, TOTAL_PEDIDO, Singleton.Instance.Session.ID_USUARIO);
+                                foreach (var item in SourceOrdenes)
+                                {
+
+                                    ta.GuardarOrdenes(Convert.ToInt32(idPedido), item.NOMBRE_PRODUCTO, item.CANTIDAD, item.CON_TODO, item.CON_TODO_MENOS, item.COMENTARIOS);
+                                }
+                                Alertas.ShowMessage("Pedido realizado con exito", "AVISO", MessageButton.OK, MessageIcon.Information);
+                                OrdenCurrentDlg.Close();
+                            }
                         }
                         catch (Exception ex) {
                             Alertas.ShowMessage(ex.Message,"AVISO", MessageButton.OK, MessageIcon.Information);

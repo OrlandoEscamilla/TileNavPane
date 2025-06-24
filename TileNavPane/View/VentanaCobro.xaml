@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="TileNavPane.View.VentanaCobro"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+              xmlns:local="clr-namespace:TileNavPane.View" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+              mc:Ignorable="d" 
+              d:DesignHeight="600" d:DesignWidth="600" Width="600" Height="600" >
+    <dxmvvm:Interaction.Behaviors>
+        <dx:CurrentDialogService x:Name="OrdenCurrentDlg"/>
+        <dx:DXMessageBoxService x:Name="AlertaDlg"/>
+    </dxmvvm:Interaction.Behaviors>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+
+        <StackPanel Orientation="Horizontal">
+            <Label Content="PEDIDO: "  Foreground="Black" FontWeight="Bold" FontSize="18"/>
+            <Label Content="{Binding ID_PEDIDO}"  Foreground="Black" FontWeight="Bold" FontSize="18"/>
+        </StackPanel>
+               
+        <StackPanel  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <dxg:GridControl x:Name="GridOrdendes" ItemsSource="{Binding SourceOrdenes}" MinHeight="100" MaxHeight="5000" MaxWidth="5000" SelectedItem="{Binding SelectedCorreo,UpdateSourceTrigger=PropertyChanged}" SelectionMode="Row" >
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn x:Name="NOMBRE_PRODUCTO" FieldName="NOMBRE_PRODUCTO" Header="PRODUCTO" Width="300"/>
+                    <dxg:GridColumn x:Name="CANTIDAD" FieldName="CANTIDAD"  />
+                    <dxg:GridColumn x:Name="CON_TODO" FieldName="CON_TODO" Header="CON TODO" Width="300"/>
+                    <dxg:GridColumn x:Name="CON_TODO_MENOS" FieldName="CON_TODO_MENOS" Header="CON TODO MENOS" />
+                    <dxg:GridColumn x:Name="COMENTARIOS" FieldName="COMENTARIOS" Header="COMENTARIOS" />
+                    <dxg:GridColumn x:Name="TOTAL_ORDEN" FieldName="TOTAL_ORDEN" Header="TOTAL ORDEN" />
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView ShowTotalSummary="true"  ShowGroupPanel="False"   AllowMasterDetail="False" AllowEditing="False">
+                        <dxg:TableView.RowCellMenuCustomizations>
+                            <dxb:BarButtonItem Content="Eliminar Orden"  Command="{Binding ElementName=GridOrdendes , Path=DataContext.BorrarOrdenCommand}" CommandParameter="{Binding ElementName=GridOrdendes, Path=SelectedItem}"  />
+                        </dxg:TableView.RowCellMenuCustomizations>
+                    </dxg:TableView>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+        </StackPanel>
+
+        
+
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal"  Grid.Column="0" >
+                <Label Content="NOMBRE CLIENTE:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Margin="10,0,10,0"  FontWeight="DemiBold"/>
+                <dxe:TextEdit  x:Name="NombreCliente"  Height="27" HorizontalAlignment="Left"  VerticalAlignment="Top" EditValue="{Binding NOMBRE_CLIENTE}" Width="170"/>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  Grid.Column="1">
+                <Label Content="TELEFONO CLIENTE:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Margin="10,0,10,0"  FontWeight="DemiBold"/>
+                <dxe:TextEdit  x:Name="TelefonoCliente"  Height="27" HorizontalAlignment="Left"  VerticalAlignment="Top" EditValue="{Binding TELEFONO_CLIENTE}" MaskType="Numeric" Mask="n0"  Width="160"/>
+
+            </StackPanel>
+        </Grid>
+        
+
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" >
+            <Label Content="COMENTARIO PEDIDO:" HorizontalAlignment="Left" Height="23" Width="140" FontWeight="DemiBold"/>
+            <dxe:TextEdit  x:Name="ComentariosPedido" Height="60" EditValue="{Binding COMENTARIO_PEDIDO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" >
+            <dxe:CheckEdit x:Name="checkDisable"  EditValue="{Binding PARA_LLEVAR}" Content="PARA LLEVAR?" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="DemiBold" IsEnabled="False"></dxe:CheckEdit>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0" >
+            <Label Content="Metodo de Pago:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Margin="10,0,10,0"  FontWeight="DemiBold"/>
+            <dxe:ComboBoxEdit x:Name="micombo" HorizontalAlignment="Left" ItemsSource="{Binding metodoPago}"  EditValue="{Binding MetodoPagoSeleccionado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="200" >
+            </dxe:ComboBoxEdit>
+
+           
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="6"  Grid.ColumnSpan="2">
+            <Label Content="Total Neto: " Foreground="Black" FontWeight="Bold" FontSize="18"/>
+            <Label x:Name="TotalPedido" Content="{Binding TOTAL_PEDIDO, Mode=TwoWay}" Foreground="Black" FontWeight="Bold" FontSize="18"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="0" >
+            <Label Content="Propina:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Margin="10,0,10,0"  FontWeight="DemiBold"/>
+            <dxe:TextEdit  x:Name="Propina"  Height="27" HorizontalAlignment="Left"  VerticalAlignment="Top" EditValue="{Binding PROPINA, Mode=TwoWay }" Width="170"/>
+
+            <Label Content="Propina %:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Margin="10,0,10,0"  FontWeight="DemiBold"/>
+            <dxe:TextEdit  x:Name="PorcentajePropina"  Height="27" HorizontalAlignment="Left"  VerticalAlignment="Top" EditValue="{Binding PORCENTAJE_PROPINA, Mode=OneWay}" Width="170"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="0" >
+            <Label Content="Total Bruto:" Foreground="Black" FontWeight="Bold" FontSize="18"/>
+            <Label Content="{Binding TOTAL_BRUTO}" Foreground="Black" FontWeight="Bold" FontSize="18"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="9"  Grid.ColumnSpan="2">
+            <dx:SimpleButton Content="Cobrar" Command="{Binding CobrarPedidoCmd}"  Width="140" Height="27" FontWeight="DemiBold"  Cursor="Hand" RenderTransformOrigin="0.521,0.63"></dx:SimpleButton>
+            <dx:SimpleButton Content="Cancelar" Command="{Binding CancelarCmd}"   Width="140" Height="27" FontWeight="DemiBold"  Cursor="Hand"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

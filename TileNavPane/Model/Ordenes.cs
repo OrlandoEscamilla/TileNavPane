@@ -19,10 +19,22 @@ namespace TileNavPane.Model
             this.TOTAL_ORDEN = calcularTotalOrden(nombre_producto, cantidad);
         }
 
+        public Ordenes(int idPedido, int idOrden, int idProducto, string nombre_producto, int cantidad, bool con_todo, string con_todo_menos, string comentarios) {
+            this.ID_PEDIDO = idPedido;
+            this.ID_ORDEN = idOrden;
+            this.ID_PRODUCTO = idProducto;
+            this.NOMBRE_PRODUCTO = nombre_producto;
+            this.CANTIDAD = cantidad;
+            this.CON_TODO = con_todo;
+            this.CON_TODO_MENOS = con_todo_menos;
+            this.COMENTARIOS = comentarios;
+            this.TOTAL_ORDEN = calcularTotalOrden(nombre_producto, cantidad);
+        }
+
 
         public int ID_ORDEN { get; set; }
 
-        public int ID_PEDIDOS { get; set; }
+        public int ID_PEDIDO { get; set; }
 
         public int ID_PRODUCTO { get; set; }
 
