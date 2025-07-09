@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TileNavPane.Model;
@@ -254,7 +255,8 @@ namespace TileNavPane.ViewModel
                             else
                             {
 
-                                var idPedido = ta.GuardarPedido(PARA_LLEVAR, NOMBRE_CLIENTE, TELEFONO_CLIENTE, COMENTARIO_PEDIDO, TOTAL_PEDIDO, Singleton.Instance.Session.ID_USUARIO);
+
+                                    var idPedido = ta.GuardarPedido(PARA_LLEVAR, NOMBRE_CLIENTE, TELEFONO_CLIENTE, COMENTARIO_PEDIDO, TOTAL_PEDIDO, Singleton.Instance.Session.ID_USUARIO);
                                 foreach (var item in SourceOrdenes)
                                 {
 

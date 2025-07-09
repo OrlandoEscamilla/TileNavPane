@@ -2324,11 +2324,11 @@ namespace TileNavPane.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string CON_TODO_MENOS {
                 get {
-                    try {
-                        return ((string)(this[this.tableDT_ORDENES.CON_TODO_MENOSColumn]));
+                    if (this.IsCON_TODO_MENOSNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CON_TODO_MENOS\' de la tabla \'DT_ORDENES\' es DBNull.", e);
+                    else {
+                        return ((string)(this[this.tableDT_ORDENES.CON_TODO_MENOSColumn]));
                     }
                 }
                 set {

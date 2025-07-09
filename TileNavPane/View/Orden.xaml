@@ -17,7 +17,7 @@
         <dx:DXMessageBoxService x:Name="AlertaDlg"/>
     </dxmvvm:Interaction.Behaviors>
 
-    <Grid>
+    <Grid Cursor="">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
@@ -99,7 +99,6 @@
         <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
             <Label Content="TELEFONO CLIENTE:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Margin="10,0,10,0"  FontWeight="DemiBold"/>
             <dxe:TextEdit  x:Name="TelefonoCliente"  Height="27" HorizontalAlignment="Left"  VerticalAlignment="Top" EditValue="{Binding TELEFONO_CLIENTE}" MaskType="Numeric" Mask="n0"  Width="160"/>
-
         </StackPanel>
 
         <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" >
@@ -116,7 +115,7 @@
             <Label Content="{Binding TOTAL_PEDIDO}" HorizontalAlignment="Left" Height="23" Width="140" FontWeight="DemiBold"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2">
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Cursor="">
             <dx:SimpleButton Content="Guardar" Command="{Binding ActualizarCmd}"  Width="140" Height="27" FontWeight="DemiBold"  Cursor="Hand" RenderTransformOrigin="0.521,0.63"></dx:SimpleButton>
             <dx:SimpleButton Content="Cancelar" Command="{Binding CancelarCmd}"   Width="140" Height="27" FontWeight="DemiBold"  Cursor="Hand"/>
         </StackPanel>

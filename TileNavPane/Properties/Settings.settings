@@ -10,5 +10,13 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=SCM008\SQLEXPRESS;Initial Catalog=TaqueriaDB;User ID=sa;Password=Hnqaalmsr2024@;TrustServerCertificate=True</Value>
     </Setting>
+    <Setting Name="ZKAccessConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionString&gt;Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\scm076\Compartir\ACCESS_TO_SQL\ZKAccess.mdb&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.OleDb&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\scm076\Compartir\ACCESS_TO_SQL\ZKAccess.mdb</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

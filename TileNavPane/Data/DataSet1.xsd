@@ -2,9 +2,10 @@
 <xs:schema id="DataSet1" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="TaqueriaDBConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="TaqueriaDBConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.TileNavPane.Properties.Settings.GlobalReference.Default.TaqueriaDBConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ZKAccessConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ZKAccessConnectionString (Settings)" PropertyReference="ApplicationSettings.TileNavPane.Properties.Settings.GlobalReference.Default.ZKAccessConnectionString" Provider="System.Data.OleDb" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TA_USUARIOS" GeneratorDataComponentClassName="TA_USUARIOS" Name="DT_USUARIOS" UserDataComponentName="TA_USUARIOS">
@@ -88,7 +89,7 @@ SELECT ID_USUARIO, USERNAME, PASSWORD, NOMBRE, PERMISOS, FECHA_ALTA, FECHA_ULTIM
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TA_PEDIDOS" GeneratorDataComponentClassName="TA_PEDIDOS" Name="DT_PEDIDOS" UserDataComponentName="TA_PEDIDOS">
             <MainSource>
-              <DbSource ConnectionRef="TaqueriaDBConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="TaqueriaDBConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT ID_PEDIDO, FECHA_HORA, ESTATUS, PARA_LLEVAR, NOMBRE_CLIENTE, TELEFONO_CLIENTE, COMENTARIOS, TOTAL, ID_USUARIO_CAPTURA, T2.NOMBRE FROM PEDIDOS T1 LEFT JOIN USUARIOS T2 ON T1.ID_USUARIO_CAPTURA = T2.ID_USUARIO </CommandText>
@@ -110,7 +111,7 @@ SELECT ID_USUARIO, USERNAME, PASSWORD, NOMBRE, PERMISOS, FECHA_ALTA, FECHA_ULTIM
               <Mapping SourceColumn="NOMBRE_CLIENTE" DataSetColumn="NOMBRE_CLIENTE" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="TaqueriaDBConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByEstatusTerminado" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByEstatusTerminado" GeneratorSourceName="FillByEstatusTerminado" GetMethodModifier="Public" GetMethodName="GetDataByEstatusTerminado" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByEstatusTerminado" UserSourceName="FillByEstatusTerminado">
+              <DbSource ConnectionRef="TaqueriaDBConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByEstatusTerminado" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByEstatusTerminado" GeneratorSourceName="FillByEstatusTerminado" GetMethodModifier="Public" GetMethodName="GetDataByEstatusTerminado" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByEstatusTerminado" UserSourceName="FillByEstatusTerminado">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>  SELECT ID_PEDIDO, FECHA_HORA, ESTATUS, PARA_LLEVAR, NOMBRE_CLIENTE, TELEFONO_CLIENTE, COMENTARIOS, TOTAL, ID_USUARIO_CAPTURA, T2.NOMBRE FROM PEDIDOS T1 LEFT JOIN USUARIOS T2 ON T1.ID_USUARIO_CAPTURA = T2.ID_USUARIO  where ESTATUS = 'TERMINADO'</CommandText>
@@ -169,7 +170,7 @@ SELECT ID_PRODUCTO, NOMBRE_PRODUCTO FROM PRODUCTOS WHERE (ID_PRODUCTO = @ID_PROD
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TA_ORDENES" GeneratorDataComponentClassName="TA_ORDENES" Name="DT_ORDENES" UserDataComponentName="TA_ORDENES">
             <MainSource>
-              <DbSource ConnectionRef="TaqueriaDBConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillOrdenesByIdPedido" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetOrdenesByIdPedido" GeneratorSourceName="FillOrdenesByIdPedido" GetMethodModifier="Public" GetMethodName="GetOrdenesByIdPedido" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetOrdenesByIdPedido" UserSourceName="FillOrdenesByIdPedido">
+              <DbSource ConnectionRef="TaqueriaDBConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillOrdenesByIdPedido" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetOrdenesByIdPedido" GeneratorSourceName="FillOrdenesByIdPedido" GetMethodModifier="Public" GetMethodName="GetOrdenesByIdPedido" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetOrdenesByIdPedido" UserSourceName="FillOrdenesByIdPedido">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        tb1.ID_PEDIDO, tb1.ID_ORDEN, tb1.ID_PRODUCTO, tb2.NOMBRE_PRODUCTO, tb1.CANTIDAD, tb1.CON_TODO, tb1.CON_TODO_MENOS, tb1.COMENTARIOS, tb1.CANTIDAD * tb2.PRECIO AS TOTAL
@@ -195,7 +196,7 @@ WHERE        (tb1.ID_PEDIDO = @idPedido)</CommandText>
               <Mapping SourceColumn="TOTAL" DataSetColumn="TOTAL" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="TaqueriaDBConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillDataForTicket" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataForTicket" GeneratorSourceName="FillDataForTicket" GetMethodModifier="Public" GetMethodName="GetDataForTicket" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataForTicket" UserSourceName="FillDataForTicket">
+              <DbSource ConnectionRef="TaqueriaDBConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillDataForTicket" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataForTicket" GeneratorSourceName="FillDataForTicket" GetMethodModifier="Public" GetMethodName="GetDataForTicket" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataForTicket" UserSourceName="FillDataForTicket">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT tb2.NOMBRE_PRODUCTO, tb1.CANTIDAD, tb1.CON_TODO_MENOS, tb1.CANTIDAD * tb2.PRECIO AS TOTAL
@@ -449,7 +450,7 @@ WHERE        (NOMBRE_PRODUCTO = @NOMBRE_PRODUCTO)</CommandText>
               </xs:element>
               <xs:element name="CANTIDAD" msprop:Generator_ColumnPropNameInTable="CANTIDADColumn" msprop:Generator_ColumnPropNameInRow="CANTIDAD" msprop:Generator_UserColumnName="CANTIDAD" msprop:Generator_ColumnVarNameInTable="columnCANTIDAD" type="xs:int" minOccurs="0" />
               <xs:element name="CON_TODO" msprop:Generator_ColumnPropNameInTable="CON_TODOColumn" msprop:Generator_ColumnPropNameInRow="CON_TODO" msprop:Generator_UserColumnName="CON_TODO" msprop:Generator_ColumnVarNameInTable="columnCON_TODO" type="xs:boolean" minOccurs="0" />
-              <xs:element name="CON_TODO_MENOS" msprop:Generator_ColumnPropNameInTable="CON_TODO_MENOSColumn" msprop:Generator_ColumnPropNameInRow="CON_TODO_MENOS" msprop:Generator_UserColumnName="CON_TODO_MENOS" msprop:Generator_ColumnVarNameInTable="columnCON_TODO_MENOS" minOccurs="0">
+              <xs:element name="CON_TODO_MENOS" msprop:Generator_ColumnPropNameInTable="CON_TODO_MENOSColumn" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="CON_TODO_MENOS" msprop:Generator_UserColumnName="CON_TODO_MENOS" msprop:Generator_ColumnVarNameInTable="columnCON_TODO_MENOS" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
@@ -488,8 +489,8 @@ WHERE        (NOMBRE_PRODUCTO = @NOMBRE_PRODUCTO)</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK__ORDENES__ID_PEDI__3A81B327" msdata:parent="DT_PEDIDOS" msdata:child="DT_ORDENES" msdata:parentkey="ID_PEDIDO" msdata:childkey="ID_PEDIDO" msprop:Generator_UserParentTable="DT_PEDIDOS" msprop:Generator_UserChildTable="DT_ORDENES" msprop:Generator_RelationVarName="relationFK__ORDENES__ID_PEDI__3A81B327" msprop:Generator_ChildPropName="GetDT_ORDENESRows" msprop:Generator_UserRelationName="FK__ORDENES__ID_PEDI__3A81B327" msprop:Generator_ParentPropName="DT_PEDIDOSRow" />
-      <msdata:Relationship name="FK_PEDIDOS_USUARIOS" msdata:parent="DT_USUARIOS" msdata:child="DT_PEDIDOS" msdata:parentkey="ID_USUARIO" msdata:childkey="ID_USUARIO_CAPTURA" msprop:Generator_UserParentTable="DT_USUARIOS" msprop:Generator_UserChildTable="DT_PEDIDOS" msprop:Generator_RelationVarName="relationFK_PEDIDOS_USUARIOS" msprop:Generator_ChildPropName="GetDT_PEDIDOSRows" msprop:Generator_ParentPropName="DT_USUARIOSRow" msprop:Generator_UserRelationName="FK_PEDIDOS_USUARIOS" />
+      <msdata:Relationship name="FK__ORDENES__ID_PEDI__3A81B327" msdata:parent="DT_PEDIDOS" msdata:child="DT_ORDENES" msdata:parentkey="ID_PEDIDO" msdata:childkey="ID_PEDIDO" msprop:Generator_UserParentTable="DT_PEDIDOS" msprop:Generator_UserChildTable="DT_ORDENES" msprop:Generator_RelationVarName="relationFK__ORDENES__ID_PEDI__3A81B327" msprop:Generator_ChildPropName="GetDT_ORDENESRows" msprop:Generator_ParentPropName="DT_PEDIDOSRow" msprop:Generator_UserRelationName="FK__ORDENES__ID_PEDI__3A81B327" />
+      <msdata:Relationship name="FK_PEDIDOS_USUARIOS" msdata:parent="DT_USUARIOS" msdata:child="DT_PEDIDOS" msdata:parentkey="ID_USUARIO" msdata:childkey="ID_USUARIO_CAPTURA" msprop:Generator_UserParentTable="DT_USUARIOS" msprop:Generator_UserChildTable="DT_PEDIDOS" msprop:Generator_RelationVarName="relationFK_PEDIDOS_USUARIOS" msprop:Generator_ChildPropName="GetDT_PEDIDOSRows" msprop:Generator_UserRelationName="FK_PEDIDOS_USUARIOS" msprop:Generator_ParentPropName="DT_USUARIOSRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
