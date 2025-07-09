@@ -24,7 +24,7 @@ namespace TileNavPane.ViewModel
 
 
 
-        public ICurrentDialogService OrdenCurrentDlg { get { return GetService<ICurrentDialogService>("OrdenCurrentDlg"); } }
+        public ICurrentDialogService VentanaCobroDlg { get { return GetService<ICurrentDialogService>("VentanaCobroDlg"); } }
         public IMessageBoxService Alertas { get { return GetService<IMessageBoxService>("AlertaDlg"); } }
 
 
@@ -167,6 +167,9 @@ namespace TileNavPane.ViewModel
                         else
                         {
                             Alertas.ShowMessage($"Pedido Cobrado", "AVISO", MessageButton.OK, MessageIcon.Information);
+
+
+                            VentanaCobroDlg.Close();
                             //imprimir pedido
                             imprimirPedido();
 
@@ -186,7 +189,7 @@ namespace TileNavPane.ViewModel
             {
                 return _cancelarCmd ?? (_cancelarCmd = new DevExpress.Mvvm.DelegateCommand(() =>
                 {
-                    OrdenCurrentDlg.Close();
+                    VentanaCobroDlg.Close();
                 }));
             }
         }

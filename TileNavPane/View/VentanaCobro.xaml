@@ -10,7 +10,7 @@
               mc:Ignorable="d" 
               d:DesignHeight="600" d:DesignWidth="600" Width="600" Height="600" >
     <dxmvvm:Interaction.Behaviors>
-        <dx:CurrentDialogService x:Name="OrdenCurrentDlg"/>
+        <dx:CurrentDialogService x:Name="VentanaCobroDlg"/>
         <dx:DXMessageBoxService x:Name="AlertaDlg"/>
     </dxmvvm:Interaction.Behaviors>
 
